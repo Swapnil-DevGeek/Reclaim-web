@@ -1,8 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-import AppBar from '@mui/material/AppBar';
 import { Toolbar } from '@mui/material';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -13,13 +11,36 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Avatar from '@mui/material/Avatar';
 import { deepOrange } from '@mui/material/colors';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+import {useNavigate} from 'react-router-dom';
 
 const drawerWidth = 240;
 
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: '#242526',
+  color: 'white',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 function ResponsiveDrawer(props) {
+  
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -36,6 +57,15 @@ function ResponsiveDrawer(props) {
     }
   };
 
+
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    navigate('/login')
+  }
+
+  
+
   const drawer = (
     <div className='py-8 min-h-full w-full bg-[#161725] text-white'>
       <List>
@@ -47,11 +77,33 @@ function ResponsiveDrawer(props) {
           </ListItem>
         ))}
       </List>
-      <Avatar className='ml-4 my-8' sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
+      <div className='ml-2 mt-4'>
+      <Button onClick={handleOpen}>
+        <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
+      </Button>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        
+      >
+        <Box sx={style} >
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Are you sure you want to Log out ?
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            <Button onClick={handleLogOut}>Log Out</Button>
+          </Typography>
+        </Box>
+      </Modal>
+    </div>
     </div>
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
+
+  
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -113,7 +165,7 @@ function ResponsiveDrawer(props) {
         <div>
           <h3 className='font-semibold text-[1.5vw]'>Here you can see all the analytics related to your sales and consumers demands</h3>
         </div>
-        <div className='mt-12 min-h-screen'>
+        <div className='mt-12 min-h-screen bg-zinc-200 rounded-xl flex flex-col justify-center items-center' >
           <Dashboard/>
         </div>
       </Box>

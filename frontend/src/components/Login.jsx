@@ -29,7 +29,6 @@ function Login() {
     .then(result=>{
       console.log(result)
       if (result.data === "Login Success"){
-        alert("Login Success")
         navigate('/home')
       }
       else {

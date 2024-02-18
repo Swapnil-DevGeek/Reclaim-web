@@ -12,13 +12,10 @@ import Signup from './components/Signup.jsx'
 import Home from './components/Home.jsx'
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <div>Hello world!</div>,
-  },
+  
   {
     path : "/login",
-    element : <Login/>
+    element : <Login/>  
   },
   {
     path : "/signup",
