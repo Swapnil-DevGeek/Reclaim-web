@@ -3,13 +3,8 @@ import {Input} from "@nextui-org/react";
 import {EyeFilledIcon} from "./EyeFilledIcon";
 import {EyeSlashFilledIcon} from "./EyeSlashFilledIcon ";
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
-=======
-import e from 'cors';
-
->>>>>>> 19b299bbf3f17419c425e5d7a44fd82a9f9427a9
+import { useNavigate } from 'react-router-dom';
 function Signup() {
     const navigate = useNavigate();
     const [isVisible, setIsVisible] = React.useState(false);

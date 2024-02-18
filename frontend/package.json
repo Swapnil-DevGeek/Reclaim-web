@@ -16,11 +16,7 @@
     "@mui/material": "^5.15.10",
     "@mui/styled-engine-sc": "^6.0.0-alpha.16",
     "@nextui-org/react": "^2.2.9",
-<<<<<<< HEAD
     "axios": "^1.6.7",
-=======
-    "clsx": "^2.1.0",
->>>>>>> 19b299bbf3f17419c425e5d7a44fd82a9f9427a9
     "framer-motion": "^11.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
