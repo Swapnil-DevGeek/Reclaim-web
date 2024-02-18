@@ -2,7 +2,9 @@ const express=require('express');
 const mongoose=require('mongoose');
 const cors = require('cors');
 const UserModel = require('./model/Users');
+const UserDataModel = require('./model/UserData');
 const app=express();
+const jwt = require('jsonwebtoken');
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({extended:true}));
@@ -31,6 +33,8 @@ app.post('/login',(req,res)=>{
         if(user){
             if(user.password===password){
                 res.json('Login Success');
+                const token = jwt.sign({ userId: user._id }, 'your_secret_key');
+                res.json({ token });
             }else{
                 res.json('Wrong Password');
             }
@@ -38,6 +42,12 @@ app.post('/login',(req,res)=>{
             res.json('User not found');
         }
     })
+    .catch(err=>res.status(400).json('Error: '+err));
+})
+
+app.post('/userData',(req,res)=>{
+    UserDataModel.create(req.body)
+    .then(userdata =>{res.json(userdata)})
     .catch(err=>res.status(400).json('Error: '+err));
 })
 

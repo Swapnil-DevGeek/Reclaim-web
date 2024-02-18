@@ -11,13 +11,41 @@ import ListItemText from '@mui/material/ListItemText';
 import Dashboard from './Dashboard';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { user } from '@nextui-org/react';
 
 const drawerWidth = 240;
+
+
+
+
+
+
+
 
 function ResponsiveDrawer(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+  const [userName, setUsername] = useState("");
+  
+
+  useEffect(() => {
+    // Fetch user data using the token stored in local storage
+    const token = localStorage.getItem('token');
+    if (token) {
+        fetch('/user', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => setUsername(data))
+        .catch(error => console.error('Error fetching user data:', error));
+    }
+}, []);
+
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -33,6 +61,8 @@ function ResponsiveDrawer(props) {
       setMobileOpen(!mobileOpen);
     }
   };
+
+
 
   const drawer = (
     <div className='py-8 min-h-full w-full bg-[#161725] text-white'>
@@ -105,10 +135,10 @@ function ResponsiveDrawer(props) {
         sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
         <div>
-          <h1 className='text-[2.5vw]'>Welcome Back 
-          <span className='text-[3vw] font-semibold text-[#e70f2cf4]'> User</span></h1>
+          <h1 className='text-[2.5vw]'>Welcome Back
+          <span className='text-[3vw] font-semibold text-[#e70f2cf4]'>User</span></h1>
         </div>
-        <div>
+        <div> 
           <h3 className='font-semibold text-[1.5vw]'>Here you can see all the analytics related to your sales and consumers demands</h3>
         </div>
         <div className='mt-12 min-h-screen'>
