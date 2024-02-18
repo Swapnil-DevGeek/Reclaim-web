@@ -42,7 +42,7 @@ function Signup() {
         navigate("/login")
       }
       else{
-        alert("Registration Failed, Please try again")
+        alert("Registration Failed")
       }
      
     })

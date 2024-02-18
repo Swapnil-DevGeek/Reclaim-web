@@ -27,6 +27,12 @@ function ResponsiveDrawer(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
 
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    navigate('/login');
+  } 
+
   const handleDrawerClose = () => {
     setIsClosing(true);
     setMobileOpen(false);
@@ -53,7 +59,9 @@ function ResponsiveDrawer(props) {
           </ListItem>
         ))}
       </List>
-      <Avatar className='ml-4 my-8' sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
+      <button onClick={handleLogOut}>
+        <Avatar className='ml-4 my-8' sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
+      </button>
     </div>
   );
 

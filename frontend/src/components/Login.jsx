@@ -90,7 +90,7 @@ function Login() {
 
         <div className='flex justify-between items-center'>
             <div>
-                <p>Want to make an account</p>
+                <p>Want to make an account ?</p>
             </div>
             <div className='text-[#e70f2cf4]'>
                 <Link to={'/signup'}>Sign up</Link>
