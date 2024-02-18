@@ -11,6 +11,8 @@ import ListItemText from '@mui/material/ListItemText';
 import Dashboard from './Dashboard';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import Avatar from '@mui/material/Avatar';
+import { deepOrange } from '@mui/material/colors';
 
 const drawerWidth = 240;
 
@@ -45,7 +47,7 @@ function ResponsiveDrawer(props) {
           </ListItem>
         ))}
       </List>
-      <button className='my-8 mx-4'>Profile</button>
+      <Avatar className='ml-4 my-8' sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
     </div>
   );
 
